@@ -1,16 +1,6 @@
-Ótima ideia! Um **README.md atraente** pode ajudar a destacar seu projeto no GitHub. Aqui está um **modelo aprimorado** para o seu **Web Security Scanner**, com **badges, instruções de instalação, captura de tela e exemplos**. 🚀  
 
----
 
-## 📌 **README.md para o Web Security Scanner**
-**Copie e cole este conteúdo no seu `README.md`** e ajuste conforme necessário.  
-
-```md
 # 🛡️ Web Security Scanner 🔍  
-![GitHub last commit](https://img.shields.io/github/last-commit/joaolimareis/web-security-scanner)  
-![GitHub repo size](https://img.shields.io/github/repo-size/joaolimareis/web-security-scanner)  
-![GitHub issues](https://img.shields.io/github/issues/joaolimareis/web-security-scanner)  
-![GitHub stars](https://img.shields.io/github/stars/joaolimareis/web-security-scanner?style=social)  
 
 > 🚀 **Web scraper para análise de segurança de sites**, coletando informações de SSL/TLS, cabeçalhos HTTP e tecnologias utilizadas.
 
@@ -21,10 +11,6 @@
 - 🔍 **Busca por Arquivos Sensíveis** (`robots.txt`, `.env`, `config.php`, etc.)  
 - 🌍 **Mapa Interativo de Servidores** (Leaflet.js + IP Geolocation API)  
 - 🕵️ **Scanner de Portas** (via `nmap`)  
-
-📷 **Captura de Tela do Dashboard**:  
-![Dashboard](https://github.com/joaolimareis/web-security-scanner/raw/main/assets/dashboard.png)
-
 ---
 
 ## 🚀 **Instalação e Uso**
