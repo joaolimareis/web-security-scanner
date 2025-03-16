@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Security Scanner Dashboard</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <script>
+        let map;
+        let markers = [];
+
+        async function viewResult(domain) {
+            const response = await fetch(`/results/${domain}`);
+            const data = await response.json();
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `<h2 class="mt-3">Último scan para ${domain}</h2>`;
+
+            if (data["Arquivos Sensíveis"]) {
+                resultDiv.innerHTML += formatSensitiveFiles(data["Arquivos Sensíveis"]);
+            }
+
+            if (data["Cabeçalhos HTTP"]) {
+                resultDiv.innerHTML += formatHttpHeaders(data["Cabeçalhos HTTP"]);
+            }
+
+            if (data["SSL/TLS"] && data["SSL/TLS"].domain) {
+                locateServer(data["SSL/TLS"].domain);
+            }
+        }
+
+        function formatSensitiveFiles(data) {
+            let content = `<h3 class="mt-3">Arquivos Sensíveis</h3><table class="table table-striped">`;
+            content += `<thead><tr><th>Arquivo</th><th>Status</th></tr></thead><tbody>`;
+
+            Object.keys(data).forEach(file => {
+                let statusIcon = data[file]["status"].includes("Exposto") ? "❌" : "✅";
+                let url = data[file]["url"] ? `<a href="${data[file]["url"]}" target="_blank">🔗 Link</a>` : "";
+                content += `<tr><td>${file}</td><td>${statusIcon} ${data[file]["status"]} ${url}</td></tr>`;
+            });
+
+            content += `</tbody></table>`;
+            return content;
+        }
+
+        function formatHttpHeaders(data) {
+            let content = `<h3 class="mt-3">Cabeçalhos HTTP</h3><table class="table table-striped">`;
+            content += `<thead><tr><th>Nome</th><th>Status</th><th>Descrição</th></tr></thead><tbody>`;
+
+            Object.keys(data).forEach(header => {
+                let statusIcon = data[header]["status"].includes("Ausente") ? "❌" : "✅";
+                content += `<tr><td>${header}</td><td>${statusIcon} ${data[header]["status"]}</td><td>${data[header]["description"]}</td></tr>`;
+            });
+
+            content += `</tbody></table>`;
+            return content;
+        }
+
+        async function locateServer(domain) {
+            const response = await fetch(`/geolocate/${domain}`);
+            const data = await response.json();
+
+            if (data.error) {
+                console.log(`Erro ao localizar ${domain}`);
+                return;
+            }
+
+            // Remove marcadores antigos antes de adicionar novos
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            const marker = L.marker([data.lat, data.lon]).addTo(map)
+                .bindPopup(`<b>${domain}</b><br>${data.city}, ${data.country}<br>ISP: ${data.isp}`)
+                .openPopup();
+            
+            markers.push(marker);
+        }
+
+        function initMap() {
+            if (!map) {
+                map = L.map('map').setView([20, 0], 2);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap'
+                }).addTo(map);
+            }
+        }
+
+        async function loadDomains() {
+            const response = await fetch('/results');
+            const data = await response.json();
+            const list = document.getElementById('domain-list');
+            list.innerHTML = "";
+
+            if (data.error) {
+                list.innerHTML = "<li>Erro ao carregar domínios</li>";
+                return;
+            }
+
+            data.domains.forEach(domain => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="#" class="list-group-item list-group-item-action" onclick="viewResult('${domain}')">${domain}</a>`;
+                list.appendChild(li);
+            });
+        }
+
+        function autoUpdate() {
+            loadDomains();
+            setTimeout(autoUpdate, 5000);
+        }
+    </script>
+
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f8f9fa; }
+        .container { max-width: 1000px; margin-top: 20px; }
+        .table { margin-top: 10px; }
+        pre { overflow: auto; white-space: pre-wrap; word-wrap: break-word; }
+        #map { height: 400px; width: 100%; margin-top: 20px; }
+    </style>
+</head>
+<body onload="loadDomains(); initMap(); autoUpdate();">
+    <div class="container">
+        <h1 class="text-center my-4">Web Security Scanner - Dashboard</h1>
+
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Domínios Escaneados</h3>
+                <ul id="domain-list" class="list-group"></ul>
+            </div>
+            <div class="col-md-8">
+                <h3>Mapa de Servidores</h3>
+                <div id="map"></div>
+            </div>
+        </div>
+
+        <div id="result" class="mt-4"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

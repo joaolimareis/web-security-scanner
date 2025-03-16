@@ -1,0 +1,82 @@
+{
+    "SSL/TLS": {
+        "domain": "google.com",
+        "issued_to": "*.google.com",
+        "issued_by": "US",
+        "valid_from": "2025-02-26 15:32:55+00:00",
+        "valid_until": "2025-05-21 15:32:54+00:00",
+        "is_valid": true
+    },
+    "Cabeçalhos HTTP": {
+        "Strict-Transport-Security": {
+            "status": "❌ Ausente",
+            "description": "Proteção contra ataques de downgrade HTTP → HTTPS (HSTS)",
+            "value": null
+        },
+        "Content-Security-Policy": {
+            "status": "❌ Ausente",
+            "description": "Evita ataques de Cross-Site Scripting (XSS)",
+            "value": null
+        },
+        "X-Frame-Options": {
+            "status": "✅ Presente",
+            "description": "Protege contra clickjacking",
+            "value": "SAMEORIGIN"
+        },
+        "X-Content-Type-Options": {
+            "status": "❌ Ausente",
+            "description": "Evita ataques de MIME-sniffing",
+            "value": null
+        },
+        "Referrer-Policy": {
+            "status": "❌ Ausente",
+            "description": "Controla o envio do cabeçalho Referer",
+            "value": null
+        },
+        "Permissions-Policy": {
+            "status": "❌ Ausente",
+            "description": "Gerencia permissões de APIs do navegador",
+            "value": null
+        }
+    },
+    "Tecnologias Web": {
+        "Servidor Web": "gws",
+        "CMS": "Não identificado",
+        "Linguagem Backend": "Não identificada",
+        "Framework Frontend": "Não identificado"
+    },
+    "Arquivos Sensíveis": {
+        "robots.txt": {
+            "status": "❌ Exposto",
+            "url": "https://google.com/robots.txt"
+        },
+        ".env": {
+            "status": "✅ Não encontrado"
+        },
+        "config.php": {
+            "status": "✅ Não encontrado"
+        },
+        "wp-config.php": {
+            "status": "✅ Não encontrado"
+        },
+        "error.log": {
+            "status": "✅ Não encontrado"
+        },
+        "debug.log": {
+            "status": "✅ Não encontrado"
+        },
+        "database.sql": {
+            "status": "✅ Não encontrado"
+        },
+        "backup.zip": {
+            "status": "✅ Não encontrado"
+        },
+        ".git/config": {
+            "status": "✅ Não encontrado"
+        }
+    },
+    "Portas Abertas": {
+        "80": "http",
+        "443": "https"
+    }
+}

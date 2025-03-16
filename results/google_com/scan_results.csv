@@ -1,0 +1,28 @@
+Categoria,Chave,Valor
+SSL/TLS,domain,google.com
+SSL/TLS,issued_to,*.google.com
+SSL/TLS,issued_by,US
+SSL/TLS,valid_from,2025-02-26 15:32:55+00:00
+SSL/TLS,valid_until,2025-05-21 15:32:54+00:00
+SSL/TLS,is_valid,True
+Cabeçalhos HTTP,Strict-Transport-Security,"{'status': '❌ Ausente', 'description': 'Proteção contra ataques de downgrade HTTP → HTTPS (HSTS)', 'value': None}"
+Cabeçalhos HTTP,Content-Security-Policy,"{'status': '❌ Ausente', 'description': 'Evita ataques de Cross-Site Scripting (XSS)', 'value': None}"
+Cabeçalhos HTTP,X-Frame-Options,"{'status': '✅ Presente', 'description': 'Protege contra clickjacking', 'value': 'SAMEORIGIN'}"
+Cabeçalhos HTTP,X-Content-Type-Options,"{'status': '❌ Ausente', 'description': 'Evita ataques de MIME-sniffing', 'value': None}"
+Cabeçalhos HTTP,Referrer-Policy,"{'status': '❌ Ausente', 'description': 'Controla o envio do cabeçalho Referer', 'value': None}"
+Cabeçalhos HTTP,Permissions-Policy,"{'status': '❌ Ausente', 'description': 'Gerencia permissões de APIs do navegador', 'value': None}"
+Tecnologias Web,Servidor Web,gws
+Tecnologias Web,CMS,Não identificado
+Tecnologias Web,Linguagem Backend,Não identificada
+Tecnologias Web,Framework Frontend,Não identificado
+Arquivos Sensíveis,robots.txt,"{'status': '❌ Exposto', 'url': 'https://google.com/robots.txt'}"
+Arquivos Sensíveis,.env,{'status': '✅ Não encontrado'}
+Arquivos Sensíveis,config.php,{'status': '✅ Não encontrado'}
+Arquivos Sensíveis,wp-config.php,{'status': '✅ Não encontrado'}
+Arquivos Sensíveis,error.log,{'status': '✅ Não encontrado'}
+Arquivos Sensíveis,debug.log,{'status': '✅ Não encontrado'}
+Arquivos Sensíveis,database.sql,{'status': '✅ Não encontrado'}
+Arquivos Sensíveis,backup.zip,{'status': '✅ Não encontrado'}
+Arquivos Sensíveis,.git/config,{'status': '✅ Não encontrado'}
+Portas Abertas,80,http
+Portas Abertas,443,https
