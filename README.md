@@ -107,4 +107,7 @@ Contribuições são bem-vindas! Para sugerir melhorias ou corrigir bugs:
 Este projeto está sob a licença **MIT**. Veja o arquivo [`LICENSE`](LICENSE) para mais detalhes.
 
 🔗 **Criado por [joaolimareis](https://github.com/joaolimareis)**
+![image](https://github.com/user-attachments/assets/d8108228-e738-4260-97b7-63f545d2b97d)
+![image](https://github.com/user-attachments/assets/a8819105-34e9-443f-b850-7ad6815a10d2)
+
 
